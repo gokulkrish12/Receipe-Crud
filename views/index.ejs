@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Recipes API</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+    code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; }
+    table { border-collapse: collapse; margin-top: 16px; }
+    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+    th { background: #efefef; }
+  </style>
+</head>
+<body>
+  <h1>Recipes API</h1>
+  <p>A RESTful CRUD service for managing recipes.</p>
+  <h2>Available Endpoints</h2>
+  <table>
+    <thead>
+      <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>POST</td><td><code>/api/recipes</code></td><td>Create a new recipe</td></tr>
+      <tr><td>GET</td><td><code>/api/recipes</code></td><td>Retrieve all recipes</td></tr>
+      <tr><td>GET</td><td><code>/api/recipes/:id</code></td><td>Retrieve a recipe by ID</td></tr>
+      <tr><td>PUT</td><td><code>/api/recipes/:id</code></td><td>Update a recipe by ID</td></tr>
+      <tr><td>DELETE</td><td><code>/api/recipes/:id</code></td><td>Delete a recipe by ID</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "Recipes API",
+    "description": "Postman collection for the Recipes CRUD API. Includes sample requests and responses for createRecipe, getAllRecipes, getRecipeById, updateRecipe, and deleteRecipe.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "9e7f7c12-6a1e-4c92-9b6c-recipes-api-001"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "recipeId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create Recipe",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/recipes",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "recipes"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Classic Margherita Pizza\",\n  \"description\": \"A traditional Italian pizza topped with fresh tomatoes, mozzarella, and basil.\",\n  \"ingredients\": [\n    \"Pizza dough\",\n    \"San Marzano tomatoes\",\n    \"Fresh mozzarella\",\n    \"Fresh basil leaves\",\n    \"Extra virgin olive oil\",\n    \"Salt\"\n  ],\n  \"instructions\": [\n    \"Preheat the oven to 250°C (480°F).\",\n    \"Roll out the pizza dough on a floured surface.\",\n    \"Spread crushed tomatoes evenly over the base.\",\n    \"Add slices of fresh mozzarella.\",\n    \"Bake for 8-10 minutes until the crust is golden.\",\n    \"Top with fresh basil and a drizzle of olive oil before serving.\"\n  ],\n  \"cuisine\": \"Italian\",\n  \"prepTimeMinutes\": 20,\n  \"cookTimeMinutes\": 10,\n  \"servings\": 2,\n  \"difficulty\": \"Medium\",\n  \"author\": \"Chef Mario\"\n}"
+        },
+        "description": "Creates a new recipe.\n\n**Endpoint:** `POST /api/recipes`\n\n**Required fields:** `title`, `description`, `ingredients`, `instructions`.\n\n**Success response:** `201 Created`."
+      }
+    },
+    {
+      "name": "Get All Recipes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/recipes?cuisine=&difficulty=&search=",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "recipes"],
+          "query": [
+            { "key": "cuisine", "value": "", "description": "Optional filter by cuisine (e.g., Italian)" },
+            { "key": "difficulty", "value": "", "description": "Optional filter by difficulty (Easy, Medium, Hard)" },
+            { "key": "search", "value": "", "description": "Optional case-insensitive title search" }
+          ]
+        },
+        "description": "Retrieves all recipes. Supports optional query filters: `cuisine`, `difficulty`, and `search` (matches title case-insensitively).\n\n**Endpoint:** `GET /api/recipes`\n\n**Success response:** `200 OK`."
+      }
+    },
+    {
+      "name": "Get Recipe By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/recipes/{{recipeId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "recipes", "{{recipeId}}"]
+        },
+        "description": "Retrieves a single recipe by its MongoDB ObjectId.\n\n**Endpoint:** `GET /api/recipes/:id`\n\n**Success response:** `200 OK`. **Failure responses:** `400 Bad Request` (invalid ID), `404 Not Found`."
+      }
+    },
+    {
+      "name": "Update Recipe",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/recipes/{{recipeId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "recipes", "{{recipeId}}"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Classic Margherita Pizza (Updated)\",\n  \"description\": \"Updated description with extra herbs.\",\n  \"prepTimeMinutes\": 25,\n  \"difficulty\": \"Easy\"\n}"
+        },
+        "description": "Updates an existing recipe by its ID. Send only the fields you want to change.\n\n**Endpoint:** `PUT /api/recipes/:id`\n\n**Success response:** `200 OK`. **Failure responses:** `400`, `404`."
+      }
+    },
+    {
+      "name": "Delete Recipe",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/recipes/{{recipeId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "recipes", "{{recipeId}}"]
+        },
+        "description": "Deletes a recipe by its ID.\n\n**Endpoint:** `DELETE /api/recipes/:id`\n\n**Success response:** `200 OK`. **Failure responses:** `400`, `404`."
+      }
+    }
+  ]
+}
